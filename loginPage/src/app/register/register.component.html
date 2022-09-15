@@ -1,0 +1,65 @@
+
+
+  <div class="card" style="margin-top: 53px;">
+    <h4 style="text-align: center;">Register</h4>
+    <div class="alert alert-success" role="alert" *ngIf="alterSucess">
+        Registration successful
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="alterWarning">
+       {{warningMsg}}
+      </div>
+      <div class="card-body">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="was-validated">
+    <div class="form-group">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" required/>
+        <div *ngIf="f['firstName'].touched && f['firstName'].invalid"  >
+            <div *ngIf="f['firstName'].errors && f['firstName'].errors['required']" class="invalid-feedback">firstName is required.</div>
+            <div *ngIf="f['firstName'].errors && f['firstName'].errors['minlength']" class="invalid-feedback">firstName should be 3 character.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName" class="form-label" >Email</label>
+        <input type="text" formControlName="email" class="form-control"  required/>
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+            <div *ngIf="f['email'].errors && f['email'].errors['required']">lastname is required.</div>
+            <div *ngIf="f['email'].errors && f['email'].errors['minlength']">lastname should be 3 character.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username" class="form-label">Please select a role</label>
+    <select class="form-select" formControlName="role" required>
+        <option>admin</option>
+        <option>user</option>
+      </select>
+      <div *ngIf="f['role'].touched && f['role'].invalid" class="invalid-feedback">
+        <div *ngIf="f['role'].errors && f['role'].errors['required']">lastname is required.</div>    
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" formControlName="username" class="form-control"  required/>
+        <div *ngIf="f['username'].touched && f['username'].invalid" class="invalid-feedback">
+            <div *ngIf="f['username'].errors && f['username'].errors['required']">username is required.</div>
+            <div *ngIf="f['username'].errors && f['username'].errors['minlength']">username should be 3 character.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" id="pwd" class="form-control" minlength="6" required/>
+        <div *ngIf=" f['password'].touched && f['password'].invalid" class="invalid-feedback">
+            <div *ngIf="f['password'].errors && f['password'].errors['required']">password is required.</div>
+            <div *ngIf="f['password'].errors && f['password'].errors['minlength']">password should be 6 character.</div>
+        </div>
+    </div>
+    <div class="form-group" style="margin-top: 16px;">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+        </button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+</div>
+</div>
+
